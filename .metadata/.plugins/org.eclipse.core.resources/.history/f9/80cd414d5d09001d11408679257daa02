@@ -1,0 +1,11 @@
+package kr.ac.kopo.login.controller;
+
+import kr.ac.kopo.framework.annotation.Controller;
+
+
+// @Controller가 붙어있으면 얘가 무슨일을 할지 알 수 있음.
+@Controller
+public class loginController {
+	
+	
+}

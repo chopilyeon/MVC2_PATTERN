@@ -1,0 +1,18 @@
+package kr.ac.kopo.framework;
+
+public class HandlerMapping {
+
+
+	public HandlerMapping(String ctrlNames) {
+
+		
+		/*
+		kr.ac.kopo.baord.controller.BoardController"
+		+"|kr.ac.kopo.login.controller.LoginController		
+	
+	*이거 날라오면 이거 처리하겠다는 것이 목적임.
+	*/	
+		
+
+	}
+}

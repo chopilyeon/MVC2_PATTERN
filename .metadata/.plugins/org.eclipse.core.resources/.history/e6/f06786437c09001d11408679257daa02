@@ -1,0 +1,12 @@
+package kr.ac.kopo.framework;
+
+public class ModelAndView {
+
+	//공유영역에 저장시키려고 하는 놈과 forward 시킬 주소를 가진 놈이 이놈임. 
+	
+	private String view;
+	private Map<String, Object> model;
+	
+	
+	
+}

@@ -1,0 +1,48 @@
+package kr.ac.kopo.listener;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
+import kr.ac.kopo.board.dao.BoardDAO;
+
+/**
+ * Application Lifecycle Listener implementation class ContextListener
+ *
+ */
+
+	//<listner.> 하면서 원래는 만들어야 하는데 annotation으로 맨처음 알아서 하게 함.
+@WebListener
+public class ContextListener implements ServletContextListener {
+
+    /**
+     * Default constructor. 
+     */
+	/**
+     * @see ServletContextListener#contextDestroyed(ServletContextEvent)
+     */
+    public void contextDestroyed(ServletContextEvent sce)  { 
+         // TODO Auto-generated method stub
+    }
+
+    
+    
+    //맨 처음이도 마지막에 구동되는 놈도 listner임. 
+	/**
+     * @see ServletContextListener#contextInitialized(ServletContextEvent)
+     */
+    //event로 매개변수도 바꿔주자~! framework가 객체들 관리하게 해주자!~ 
+    public void contextInitialized(ServletContextEvent event)  { 
+    	
+    	
+    	System.out.println("리스너 시작");
+         // TODO Auto-generated method stub
+    
+    	BoardDao boardDao = new BoardDAO();
+    
+    }
+    
+    
+    
+	
+}

@@ -1,0 +1,22 @@
+package kr.ac.kopo.framework.annotation;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RequestMapping {
+	
+	//JVM이 인식하는 주석 @을 인식함
+	//언제까지 유지시킬거야? 
+	//COMPILE 시점까지 유지시킬거야?
+	//RUNTIME시점 까지 유지시킬거야? -> 이런 것들이 필요함
+	//유지하는 시기가  RUNTIME시 까지임.
+	
+	
+	//@override를 class에 붙이면 에러남. 니가 만든 annotation이 어디에 붙을거야? 멤버변수? 클래스 메소드? 어디에 붙일거야? 다 결정할 수 있음. 
+	
+	
+	
+}

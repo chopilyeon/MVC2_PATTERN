@@ -1,0 +1,99 @@
+package kr.ac.kopo.framework;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Method;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class DispatcherServlet
+ */
+
+//value생략해도 value로 인식함. default가 value임. 
+//@WebServlet(value="*.do")
+//어쨌든 /board/list.do 가 들어오면 처리해버리겠다. 
+
+
+//handler mapping이 처리하게 하자~! 
+@WebServlet(urlPatterns={"*.do"},initParams= {@WebInitParam(name="controllers",
+															value="kr.ac.kopo.board.controller.BoardController"
+																+"|kr.ac.kopo.login.controller.LoginController")})
+public class DispatcherServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	private HandlerMapping mappings;
+
+    /**
+     * Default constructor. 
+     */
+    public DispatcherServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		String ctrlNames = config.getInitParameter("controllers");
+		System.out.println(ctrlNames);
+		//이걸 이용해서 handler mapping 이 일을 처리하게 하고 싶은 것임.
+		
+		try {
+		mappings = new HandlerMapping(ctrlNames);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		
+		String uri = request.getRequestURI();
+		uri = uri.substring(request.getContextPath().length());
+		
+		System.out.println("uri: "+ uri);
+		
+		
+		try {
+			CtrlAndMethod cam = mappings.getCtrlAndMethod(uri);
+			if(cam==null) {
+				throw new Exception("해당 URL은 존재하지 않습니다. 알겠니?");
+			}
+			Object target = cam.getTarget();
+			Method method = cam.getMethod();
+			
+			
+			//method를 동적으로 실행하라는 메소드임. 뒤는 parameter임 매개변수 없으면 null임.
+			method.invoke(target,request,response);
+			
+		}catch(Exception e) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(e.getMessage());
+			out.close();
+			System.out.println(e.getMessage());
+		}
+		
+		
+		System.out.println("getTarget :" + mappings.getCtrlAndMethod("/board/list.do").getTarget());
+		System.out.println("getMethod :" + mappings.getCtrlAndMethod("/board/list.do").getMethod());
+		
+		
+		// 이렇게 되게 하자는 것임. new BoardController().list();
+	}
+
+}

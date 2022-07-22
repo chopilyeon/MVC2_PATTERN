@@ -1,0 +1,17 @@
+package kr.ac.kopo.Login.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+// @Controller가 붙어있으면 얘가 무슨일을 할지 알 수 있음.
+
+@Controller
+public class LoginController {
+	
+	@RequestMapping("/login.do")
+	public String login(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		return null;
+	}
+}

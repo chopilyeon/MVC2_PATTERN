@@ -1,0 +1,17 @@
+package kr.ac.kopo.framework.annotation;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+
+//target이 type이면 class 위에 붙이자
+@Retention(RUNTIME)
+@Target(TYPE)
+public @interface Controller {
+
+	
+	
+}

@@ -1,0 +1,56 @@
+package kr.ac.kopo.board.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.ac.kopo.framework.ModelAndView;
+import kr.ac.kopo.framework.annotation.Controller;
+import kr.ac.kopo.framework.annotation.RequestMapping;
+
+
+
+
+
+@Controller
+public class BoardController {
+	
+	/*
+	 * @RequestMapping(value="/board/list.do") 
+	 * int a; 위에 쓰면 에러남
+	 */	
+	
+	
+	
+	
+	@RequestMapping(value="/board/list.do")
+	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView("/jsp/board/list.jsp");
+		
+		
+		System.out.println("list()호출");
+		
+		return mav;
+	}
+	
+	
+	
+	//value생략 가능 default로 잡아줌. 
+	@RequestMapping("/board/detail.do")
+	public ModelAndView detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+
+		System.out.println("detail() 호출");
+		
+		
+		return null;
+	}
+	
+	@RequestMapping("/board/writeForm.do")
+	public ModelAndView writeForm(HttpServletRequest request,HttpServletResponse) throws Exception{
+		
+	}
+	
+	
+
+}

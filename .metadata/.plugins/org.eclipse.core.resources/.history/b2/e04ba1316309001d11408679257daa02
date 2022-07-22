@@ -1,0 +1,14 @@
+package kr.ac.kopo.framework;
+
+public class HandlerMapping {
+
+
+	public HandlerMapping(String ctrlNames) {
+/*
+		kr.ac.kopo.baord.controller.BoardController"
+				+"|kr.ac.kopo.login.controller.LoginController		
+	*/	
+		
+
+	}
+}

@@ -1,0 +1,39 @@
+package kr.ac.kopo.framework;
+
+import java.lang.reflect.Method;
+
+public class HandlerMapping {
+
+
+	public HandlerMapping(String ctrlNames) throws Exception {
+
+		
+		/*
+		kr.ac.kopo.baord.controller.BoardController" //이걸 통해서 어떤 어떤 메소드를 실행하겠다는 것임.
+		+"|kr.ac.kopo.login.controller.LoginController		
+	
+		 *이거 날라오면 이거 처리하겠다는 것이 목적임.
+		 */	
+		
+		
+		String[] ctrls = ctrlNames.split("\\|");
+		
+		for(String ctrl:ctrls) {
+			System.out.println(ctrl);
+			Class<?> clz =	Class.forName(ctrl);
+			
+			
+			//메소드를 뽑아내자!~ 
+			Method[] methods = clz.getMethods();
+			for(Method method : methods) {
+	
+				System.out.println(method);
+				
+			}
+			
+			
+		}
+		
+
+	}
+}

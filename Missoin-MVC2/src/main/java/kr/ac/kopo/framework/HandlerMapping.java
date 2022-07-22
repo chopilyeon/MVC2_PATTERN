@@ -1,0 +1,80 @@
+package kr.ac.kopo.framework;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
+import kr.ac.kopo.framework.annotation.RequestMapping;
+
+public class HandlerMapping {
+
+	
+	//private Map<String,Controller> mappings;
+	
+	private Map<String,CtrlAndMethod> mappings;
+
+	
+	
+
+	public HandlerMapping(String ctrlNames) throws Exception {
+
+		
+		/*
+		kr.ac.kopo.baord.controller.BoardController" 
+		+"|kr.ac.kopo.login.controller.LoginController		
+	
+	*/
+		mappings = new HashMap<>();
+		
+		
+		String[] ctrls = ctrlNames.split("\\|");
+		
+		for(String ctrl:ctrls) {
+			System.out.println(ctrl);
+			Class<?> clz =	Class.forName(ctrl);
+			Constructor<?> constructor = clz.getConstructor();
+			Object target = constructor.newInstance();
+			
+			
+			
+		
+			Method[] methods = clz.getMethods(); //public인 모든 메소드들 다 갖고옴 
+//			Method[] methods = clz.getDeclaredMethods(); //내가 선언한 method들을 보여줌.
+			
+			
+			
+			for(Method method : methods){
+				System.out.println(method);
+			
+				//request mapping annotation 메소드마다 돌면서 확인함. null인지 아닌지
+				RequestMapping reqAnno = method.getAnnotation(RequestMapping.class);
+				System.out.println("reqAnno : " + reqAnno);
+				
+				if(reqAnno != null) {
+			
+					
+					//모든 메소드를 돌면서 method가 있는지 확인함. 
+					String uri = reqAnno.value();
+					System.out.println(uri);
+					
+					mappings.put(uri,new CtrlAndMethod(target,method));
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+
+	}
+	
+	
+	public CtrlAndMethod getCtrlAndMethod(String uri) {
+		return mappings.get(uri);
+	}
+	
+}
+

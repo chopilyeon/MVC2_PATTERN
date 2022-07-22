@@ -1,0 +1,10 @@
+package kr.ac.kopo.framework.annotation;
+
+public @interface RequestMapping {
+	
+	//JVM이 인식하는 주석 @을 인식함
+	//언제까지 유지시킬거야? 
+	//COMPILE 시점까지 유지시킬거야?
+	//RUNTIME시점 까지 유지시킬거야? -> 이런 것들이 필요함
+
+}

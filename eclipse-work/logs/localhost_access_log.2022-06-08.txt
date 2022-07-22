@@ -1,0 +1,8 @@
+127.0.0.1 - - [08/Jun/2022:19:18:30 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:19:18:31 +0900] "GET /Misson-Web/jsp/board/list.jsp HTTP/1.1" 200 5462
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:19:18:31 +0900] "GET /Misson-Web/resource/js/jquery-3.6.0.min.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:19:18:31 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:19:20:34 +0900] "GET /Misson-Web/jsp/board/writeForm.jsp HTTP/1.1" 200 2353
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:19:20:37 +0900] "POST /Misson-Web/jsp/board/write.jsp HTTP/1.1" 200 731
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:19:56:44 +0900] "GET /Misson-Web/jsp/board/list.jsp HTTP/1.1" 200 5916
+0:0:0:0:0:0:0:1 - - [08/Jun/2022:20:30:06 +0900] "GET /LectureWeb/jquery/test.html HTTP/1.1" 200 448

@@ -1,0 +1,140 @@
+package kr.ac.kopo.framework;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class DispatcherServlet
+ */
+
+//value가 default임
+//@WebServlet(value="*.do")
+
+
+
+//handler mapping
+@WebServlet(urlPatterns={"*.do"},initParams= {@WebInitParam(name="controllers",
+															value="kr.ac.kopo.board.controller.BoardController"
+																+"|kr.ac.kopo.login.controller.LoginController")})
+public class DispatcherServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	private HandlerMapping mappings;
+
+    /**
+     * Default constructor. 
+     */
+    public DispatcherServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		String ctrlNames = config.getInitParameter("controllers");
+		System.out.println(ctrlNames);
+		
+		try {
+		mappings = new HandlerMapping(ctrlNames);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		
+		String uri = request.getRequestURI();
+		uri = uri.substring(request.getContextPath().length());
+		
+		System.out.println("uri: "+ uri);
+		
+		
+		String view = "";
+		
+		try {
+			CtrlAndMethod cam = mappings.getCtrlAndMethod(uri);
+			
+			if(cam==null) {
+				throw new Exception("해당 url이 존재하지 않습니다. 알겠지??");
+			}
+			
+			Object target = cam.getTarget();
+			Method method = cam.getMethod();
+			
+			
+		
+			
+			
+			//method를 동적으로 실행시켜주는 역할이 됨.
+			ModelAndView mav = (ModelAndView)method.invoke(target,request,response);
+			
+			view = mav.getView();
+			
+
+			
+			// 응답(forward, snedRedirect)
+			//String view = mav.getView();
+			//if() 밖에 있어야 올바른 것임. 여기서 다시 error servlet으로 가라고 할 수도 있음. try문에 있는게 아니고 바깥에 있는게 더 올바른 방법임. -> catch에서도 다른 페이지로 보낼 것이기 때문임.
+			
+			
+			
+			//공유 영역에 등록하자~!
+			
+			Map<String,Object> model = mav.getModel();
+			Set<String> keys = model.keySet();
+			for(String key:keys) {
+				request.setAttribute(key, model.get(key));
+			}
+			
+			
+		}catch(Exception e) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(e.getMessage());
+			out.close();
+			System.out.println(e.getMessage());
+		}
+		
+		
+		System.out.println("getTarget :" + mappings.getCtrlAndMethod("/board/list.do").getTarget());
+		System.out.println("getMethod :" + mappings.getCtrlAndMethod("/board/list.do").getMethod());
+		
+		
+		//응답(forward,sendRedirect)
+		if(view.startsWith("redirect:")) {
+			view = view.substring("redirect:".length());
+			response.sendRedirect(view);
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request,response);
+		
+			
+			
+		}
+		
+		
+		
+	}
+
+}

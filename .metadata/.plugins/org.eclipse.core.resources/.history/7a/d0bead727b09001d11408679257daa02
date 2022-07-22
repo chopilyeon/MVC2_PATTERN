@@ -1,0 +1,63 @@
+package kr.ac.kopo.board.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.ac.kopo.framework.annotation.Controller;
+import kr.ac.kopo.framework.annotation.RequestMapping;
+
+//전체 게시글 조회 수정도 하고 삭제하고 이런 기능들이 필요함. 예전에는 handle request로 통일시켰다면은 이제 얘가 처리하도록 하겠다! 
+
+	/*
+	 * 
+	 * 이 밑의 작업을 전부 BoardContorller가 처리하겠다! -> 이제 어떤 method 가 처리할지 선택해야 함. 
+	 * 
+	 * 전체 게시글 조회  /board/list.do    -> list() 메소드가 실행하게 만들고 싶다! 
+	 * 새글등록(form)  /board/writeForm.do -> writeForm() 이라는 메소드가 실행하게 하고 싶다! 
+	 * 새글 등록		/board/write.do -> write() 라는 메소드가 실행하게 하고 싶어! 
+	 * 상세 게시글 조회  /board/detail.do -> detail() 이라는 메소드가 실행하게 하고 싶어! 
+	 * 게시글 수정
+	 * 게시글 삭제
+	 * 
+	 * -> 무슨 메소드를 실행하게 할지를 annotation으로 처리하겠다는 것이 핵심임.
+	 */
+	
+
+//하나의 controller에 여러개의 url을 조질 수 있는 것들이 만들어지게 됨 -> 코드가 간결해지고 관리하기가 쉬워짐.
+
+
+
+@Controller
+public class BoardController {
+	
+	/*
+	 * @RequestMapping(value="/board/list.do") 
+	 * int a; 하면 위치 에러남 -> 메소드에만 붙이라고 했으므로
+	 */	
+	
+	
+	
+	
+	@RequestMapping(value="/board/list.do")
+	public String list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println("list() ... 호출");
+		
+		return null;
+	}
+	
+	
+	
+	//value생략 가능함. 
+	@RequestMapping("/board/detail.do")
+	public String detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
+		
+		return null;
+	}
+	
+	
+	
+
+}

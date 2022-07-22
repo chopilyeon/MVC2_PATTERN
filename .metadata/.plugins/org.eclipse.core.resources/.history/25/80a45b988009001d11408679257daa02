@@ -1,0 +1,69 @@
+package kr.ac.kopo.board.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.ac.kopo.framework.ModelAndView;
+import kr.ac.kopo.framework.annotation.Controller;
+import kr.ac.kopo.framework.annotation.RequestMapping;
+
+//��ü �Խñ� ��ȸ ������ �ϰ� �����ϰ� �̷� ��ɵ��� �ʿ���. �������� handle request�� ���Ͻ��״ٸ��� ���� �갡 ó���ϵ��� �ϰڴ�! 
+
+	/*
+	 * 
+	 * �� ���� �۾��� ���� BoardContorller�� ó���ϰڴ�! -> ���� � method �� ó������ �����ؾ� ��. 
+	 * 
+	 * ��ü �Խñ� ��ȸ  /board/list.do    -> list() �޼ҵ尡 �����ϰ� ����� �ʹ�! 
+	 * ���۵��(form)  /board/writeForm.do -> writeForm() �̶�� �޼ҵ尡 �����ϰ� �ϰ� �ʹ�! 
+	 * ���� ���		/board/write.do -> write() ��� �޼ҵ尡 �����ϰ� �ϰ� �;�! 
+	 * �� �Խñ� ��ȸ  /board/detail.do -> detail() �̶�� �޼ҵ尡 �����ϰ� �ϰ� �;�! 
+	 * �Խñ� ����
+	 * �Խñ� ����
+	 * 
+	 * -> ���� �޼ҵ带 �����ϰ� ������ annotation���� ó���ϰڴٴ� ���� �ٽ���.
+	 */
+	
+
+//�ϳ��� controller�� �������� url�� ���� �� �ִ� �͵��� ��������� �� -> �ڵ尡 ���������� �����ϱⰡ ������.
+
+
+
+@Controller
+public class BoardController {
+	
+	/*
+	 * @RequestMapping(value="/board/list.do") 
+	 * int a; �ϸ� ��ġ ������ -> �޼ҵ忡�� ���̶�� �����Ƿ�
+	 */	
+	
+	
+	
+	
+	@RequestMapping(value="/board/list.do")
+	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView("/jsp/board/list.jsp");
+		
+		
+		System.out.println("list() ȣ��...");
+		
+		return mav;
+	}
+	
+	
+	
+	//value���� ������. 
+	@RequestMapping("/board/detail.do")
+	public ModelAndView detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+
+		System.out.println("detail() ȣ��...");
+		
+		
+		return null;
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,45 @@
+package kr.ac.kopo.framework;
+
+import java.lang.reflect.Method;
+
+import kr.ac.kopo.framework.annotation.RequestMapping;
+
+public class HandlerMapping {
+
+
+	public HandlerMapping(String ctrlNames) throws Exception {
+
+		
+		/*
+		kr.ac.kopo.baord.controller.BoardController" //이걸 통해서 어떤 어떤 메소드를 실행하겠다는 것임.
+		+"|kr.ac.kopo.login.controller.LoginController		
+	
+		 *이거 날라오면 이거 처리하겠다는 것이 목적임.
+		 */	
+		
+		
+		String[] ctrls = ctrlNames.split("\\|");
+		
+		for(String ctrl:ctrls) {
+			System.out.println(ctrl);
+			Class<?> clz =	Class.forName(ctrl);
+			
+			
+			//메소드를 뽑아내자!~ 
+//			Method[] methods = clz.getMethods(); //상속받은 놈들 중에서 접근제한자가 public인것들 
+			Method[] methods = clz.getDeclaredMethods(); //s내가 선언한것에 대한 메소드만 나옴. 상속받고 뭐한 메소드는 다 빼고 내가 선언한 메소드만 나옴 
+			
+			for(Method method : methods){
+				System.out.println(method);
+			
+				//야 너 request mapping annotation 붙어있니? 돌아다니면서 찾아냄.
+				RequestMapping reqAnno = method.getAnnotation(RequestMapping.class);
+				System.out.println("reqAnno:"+reqAnno);
+			}
+			
+			
+		}
+		
+
+	}
+}

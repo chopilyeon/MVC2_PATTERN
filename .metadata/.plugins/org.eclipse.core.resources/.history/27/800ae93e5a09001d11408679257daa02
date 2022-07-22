@@ -1,0 +1,7 @@
+package kr.ac.kopo.framework.annotation;
+
+public @interface RequestMapping {
+	
+	//JVM이 인식하는 주석 @을 인식함
+
+}

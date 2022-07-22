@@ -1,0 +1,74 @@
+package kr.ac.kopo.framework;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
+import kr.ac.kopo.framework.annotation.RequestMapping;
+
+public class HandlerMapping {
+
+	
+	//private Map<String,Controller> mappings;
+	
+	private Map<String,CtrlAndMethod> mappings;
+	//우리는 controller 뿐만 아니라 controller가 갖고 있는 메소드들까지 알아야 함! class를 하나 더 만들자
+	
+	
+
+	public HandlerMapping(String ctrlNames) throws Exception {
+
+		
+		/*
+		kr.ac.kopo.baord.controller.BoardController" //이걸 통해서 어떤 어떤 메소드를 실행하겠다는 것임.
+		+"|kr.ac.kopo.login.controller.LoginController		
+	
+		 *이거 날라오면 이거 처리하겠다는 것이 목적임.
+		 */	
+		
+		mappings = new HashMap<>();
+		
+		
+		String[] ctrls = ctrlNames.split("\\|");
+		
+		for(String ctrl:ctrls) {
+			System.out.println(ctrl);
+			Class<?> clz =	Class.forName(ctrl);
+			Constructor<?> constructor = clz.getConstructor();
+			Object target = constructor.newInstance();
+			
+			
+			
+			//메소드를 뽑아내자!~ 
+//			Method[] methods = clz.getMethods(); //상속받은 놈들 중에서 접근제한자가 public인것들 
+			Method[] methods = clz.getDeclaredMethods(); //s내가 선언한것에 대한 메소드만 나옴. 상속받고 뭐한 메소드는 다 빼고 내가 선언한 메소드만 나옴 
+			
+			
+			
+			for(Method method : methods){
+				System.out.println(method);
+			
+				//야 너 request mapping annotation 붙어있니? 돌아다니면서 찾아냄.야 너 어노테이션 붙어있어? 붙어 있어? 야 detail 너 붙었어 안붙었어? list너 붙었어 안붙었어? 계속 물어봄. 안붙어있으면 null값 호출함.
+				RequestMapping reqAnno = method.getAnnotation(RequestMapping.class);
+				System.out.println("reqAnno : " + reqAnno);
+				
+				if(reqAnno != null) {
+					//이걸 통해서 value를 뽑아낼수가 있음. 즉 uri들을 뽑아낼 수가 있음 
+					//value로 해놨으므로 value인것임. name으로 해놨으면 name 이어야 함.
+					String uri = reqAnno.value();
+					System.out.println(uri);
+					
+					map.put(uri,new CtrlAndMethod(target,nethid));
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+
+	}
+}

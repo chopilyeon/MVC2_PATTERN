@@ -1,0 +1,16 @@
+package kr.ac.kopo.framework;
+
+public class CtrlAndMethod {
+	
+	//boardList 가 들어오면 특정 메소드를 실행하겠다는 의미임. 
+	//boardController 객체가 있어야 특정 메소드를 실행할 수가 있음. new 를 해야 메소드를 실행할 수가 있음.
+	
+	private Object targer;
+	//어느 컨트롤러의 무슨 메소드를 실행할까? ~!
+	
+	private Method method;
+	
+	
+	
+
+}
