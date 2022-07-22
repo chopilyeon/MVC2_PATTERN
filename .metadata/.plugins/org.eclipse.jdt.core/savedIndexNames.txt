@@ -1,7 +1,6 @@
 INDEX VERSION 1.131+D:\Lecture\.metadata\.plugins\org.eclipse.jdt.core
 2345951890.index
 3756598957.index
-628421187.index
 1811893338.index
 2923664428.index
 2474588780.index

@@ -72,7 +72,7 @@ public class BoardController {
 		
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setView("jsp/board/detail.jsp");
+		mav.setView("/jsp/board/detail.jsp");
 		mav.setAttribute("board", board);
 		
 		

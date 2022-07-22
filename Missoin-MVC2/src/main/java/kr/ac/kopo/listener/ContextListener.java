@@ -58,7 +58,7 @@ public class ContextListener implements ServletContextListener {
   
     	
     	//sc.setAttribute("boardDao", boardDao);
-    	sc.setAttribute("boardSerivce", boardService);
+    	sc.setAttribute("boardService", boardService);
 		//BoardService 쓰려면 DAO 필요함. 
     
     }

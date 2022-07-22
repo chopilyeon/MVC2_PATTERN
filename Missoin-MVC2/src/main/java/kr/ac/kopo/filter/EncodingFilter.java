@@ -44,7 +44,7 @@ public class EncodingFilter extends HttpFilter implements Filter {
 
 		
 		
-		request.setCharacterEncoding(config.getInitParameter("encoding"));
+		//request.setCharacterEncoding(config.getInitParameter("encoding"));
 		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
