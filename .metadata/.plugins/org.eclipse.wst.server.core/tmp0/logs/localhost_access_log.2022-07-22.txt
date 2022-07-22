@@ -171,3 +171,11 @@
 0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:44:37 +0900] "GET /Missoin-MVC2/*.do HTTP/1.1" 500 52
 0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:44:42 +0900] "GET /Missoin-MVC2/board/list.do HTTP/1.1" 200 43056
 0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:44:44 +0900] "GET /Missoin-MVC2/board/detail.do?no=188 HTTP/1.1" 404 830
+127.0.0.1 - - [22/Jul/2022:16:46:06 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:46:07 +0900] "GET /Missoin-MVC2/*.do HTTP/1.1" 500 52
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:46:14 +0900] "GET /Missoin-MVC2/board/list.do HTTP/1.1" 200 43056
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:46:15 +0900] "GET /Missoin-MVC2/board/detail.do?no=188 HTTP/1.1" 404 820
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:47:09 +0900] "GET /Missoin-MVC2/*.do HTTP/1.1" 500 52
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:47:13 +0900] "GET /Missoin-MVC2/board/list.do HTTP/1.1" 200 43056
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:47:15 +0900] "GET /Missoin-MVC2/board/detail.do?no=188 HTTP/1.1" 200 1991
+0:0:0:0:0:0:0:1 - - [22/Jul/2022:16:47:15 +0900] "GET /Misson-Web/resources/css/bootstrap.min.css HTTP/1.1" 404 861
